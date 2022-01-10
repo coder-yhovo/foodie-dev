@@ -6,7 +6,7 @@ spring:
   datasource: # 数据源的相关配置
     type: com.zaxxer.hikari.HikariDataSource # 数据源类型：HikariCP
     driver-class-name: com.mysql.jdbc.Driver # mysql驱动
-    url: jdbc:mysql://localhost:3306/foodie-shop-dev?useUnicode=true&characterEncoding=UTF-8&autoReconnect
+    url: jdbc:mysql://localhost:3306/foodie-shop?useUnicode=true&characterEncoding=UTF-8&autoReconnect
     username: root
     password: root
     hikari:
@@ -18,13 +18,13 @@ spring:
       pool-name: DateSourceHikariCP # 连接池名字
       max-lifetime: 1800000 # 连接的生命时长（毫秒），超时而且没被使用则被释放（retired），默认:30分钟
       connection-test-query: SELECT 1
-    ############################################################
-    #
-    # mybatis 配置
-    #############################################################
-  mybatis:
-    type-aliases-package: com.imooc.pojo # 所有POJO类所在包路径
-    mapper-locations: classpath:mapper/*.xml # mapper映射文件
+############################################################
+#
+# mybatis 配置
+#############################################################
+mybatis:
+  type-aliases-package: com.imooc.pojo # 所有POJO类所在包路径
+  mapper-locations: classpath:mapper/*.xml # mapper映射文件
 #通用mapper配置
 mapper:
   mappers: com.imooc.my.mapper.MyMapper
