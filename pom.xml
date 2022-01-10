@@ -58,16 +58,16 @@
             <optional>true</optional>
         </dependency>
         <!-- mysql驱动 -->
-        <dependency>
+        <!--<dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.41</version> </dependency>
+            <version>5.1.41</version> </dependency>-->
         <!-- mybatis -->
-        <dependency>
+        <!--<dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
             <version>2.1.0</version>
-        </dependency>
+        </dependency>-->
     </dependencies>
 
 </project>
