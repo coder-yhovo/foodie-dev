@@ -20,4 +20,12 @@ public interface UserService {
      */
     public Users CreateUsers(UserBo userBo);
 
+    /**
+     * 检索用户名和密码是否匹配
+     * @param username 用户名
+     * @param password 密码
+     * @return 查询到的user
+     */
+    public Users queryUserForLogin(String username,String password);
+
 }
