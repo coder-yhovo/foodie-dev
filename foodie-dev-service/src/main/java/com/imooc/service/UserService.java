@@ -18,7 +18,7 @@ public interface UserService {
      * @param userBo 前端发送的user json对象
      * @return 封装好的user
      */
-    public Users CreateUsers(UserBo userBo);
+    public Users createUsers(UserBo userBo);
 
     /**
      * 检索用户名和密码是否匹配

@@ -33,12 +33,12 @@ public class UserServiceImpl implements UserService {
         Example.Criteria userCriteria=userExample.createCriteria();
         userCriteria.andEqualTo("username",username);
         Users result=usersMapper.selectOneByExample(userExample);
-        return result==null?false:true;
+        return result != null;
     }
 
     @Transactional(propagation = Propagation.REQUIRED)
     @Override
-    public Users CreateUsers(UserBo userBo) {
+    public Users createUsers(UserBo userBo) {
         Users user=new Users();
         String useId=sid.nextShort();
         user.setId(useId);
@@ -65,7 +65,6 @@ public class UserServiceImpl implements UserService {
         Example.Criteria userCriteria=userExample.createCriteria();
         userCriteria.andEqualTo("username",username);
         userCriteria.andEqualTo("password",password);
-        Users result=usersMapper.selectOneByExample(userExample);
-        return result;
+        return usersMapper.selectOneByExample(userExample);
     }
 }

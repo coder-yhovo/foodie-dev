@@ -11,7 +11,6 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -65,7 +64,7 @@ public class PassportController {
             return IMOOCJSONResult.errorMsg("两次密码不一致");
         }
         //实现注册
-        Users userResult=userService.CreateUsers(userBo);
+        Users userResult=userService.createUsers(userBo);
         userResult=setNULLProperty(userResult);
         CookieUtils.setCookie(request,response,"user",
                 JsonUtils.objectToJson(userResult),true);
@@ -93,6 +92,11 @@ public class PassportController {
         return IMOOCJSONResult.ok(userResult);
     }
 
+    /**
+     * 用户隐私字段设置为空
+     * @param userResult 处理前的对象
+     * @return 处理后的Users对象
+     */
     private Users setNULLProperty(Users userResult){
         userResult.setPassword(null);
         userResult.setMobile(null);
