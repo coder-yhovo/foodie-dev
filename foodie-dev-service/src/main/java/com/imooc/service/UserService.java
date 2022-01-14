@@ -2,7 +2,7 @@ package com.imooc.service;
 
 
 import com.imooc.pojo.Users;
-import com.imooc.pojo.bo.UserBo;
+import com.imooc.pojo.bo.UserBO;
 
 public interface UserService {
 
@@ -18,7 +18,7 @@ public interface UserService {
      * @param userBo 前端发送的user json对象
      * @return 封装好的user
      */
-    public Users createUsers(UserBo userBo);
+    public Users createUsers(UserBO userBo);
 
     /**
      * 检索用户名和密码是否匹配
