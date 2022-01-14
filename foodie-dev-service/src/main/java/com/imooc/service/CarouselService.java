@@ -11,5 +11,5 @@ public interface CarouselService {
      * @param isShow
      * @return
      */
-    public List<Carousel> querryAll(Integer isShow);
+    public List<Carousel> queryAll(Integer isShow);
 }

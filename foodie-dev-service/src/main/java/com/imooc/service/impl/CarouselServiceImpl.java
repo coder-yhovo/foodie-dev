@@ -17,7 +17,7 @@ public class CarouselServiceImpl implements CarouselService {
     private CarouselMapper carouselMapper;
 
     @Override
-    public List<Carousel> querryAll(Integer isShow) {
+    public List<Carousel> queryAll(Integer isShow) {
         Example carouselExample=new Example(Carousel.class);
         carouselExample.orderBy("sort").desc();
         Example.Criteria carouselCriteria=carouselExample.createCriteria();
