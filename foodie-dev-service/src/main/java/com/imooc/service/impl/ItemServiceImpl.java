@@ -1,13 +1,9 @@
 package com.imooc.service.impl;
 
-import com.imooc.mapper.ItemsImgMapper;
-import com.imooc.mapper.ItemsMapper;
-import com.imooc.mapper.ItemsParamMapper;
-import com.imooc.mapper.ItemsSpecMapper;
-import com.imooc.pojo.Items;
-import com.imooc.pojo.ItemsImg;
-import com.imooc.pojo.ItemsParam;
-import com.imooc.pojo.ItemsSpec;
+import com.imooc.enums.CommentLevel;
+import com.imooc.mapper.*;
+import com.imooc.pojo.*;
+import com.imooc.pojo.vo.CommentLevelCountsVO;
 import com.imooc.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,6 +26,9 @@ public class ItemServiceImpl implements ItemService {
 
     @Autowired
     private ItemsParamMapper itemsParamMapper;
+
+    @Autowired
+    private ItemsCommentsMapper itemsCommentsMapper;
 
     @Override
     @Transactional(propagation = Propagation.SUPPORTS)
@@ -67,4 +66,27 @@ public class ItemServiceImpl implements ItemService {
         return itemsParamMapper.selectOneByExample(itemsParamExp);
     }
 
+    @Transactional(propagation = Propagation.SUPPORTS)
+    @Override
+    public CommentLevelCountsVO queryCommentCounts(String itemId) {
+        Integer goodCounts=getCommentCounts(itemId, CommentLevel.GOOD.type);
+        Integer normalCounts=getCommentCounts(itemId,CommentLevel.NORMAL.type);
+        Integer badCounts=getCommentCounts(itemId,CommentLevel.BAD.type);
+        Integer totalCounts=goodCounts+normalCounts+badCounts;
+        CommentLevelCountsVO countsVO=new CommentLevelCountsVO();
+        countsVO.setGoodCounts(goodCounts);
+        countsVO.setNormalCounts(normalCounts);
+        countsVO.setBadCounts(badCounts);
+        countsVO.setTotalCounts(totalCounts);
+        return countsVO;
+    }
+
+    Integer getCommentCounts(String itemId,Integer level){
+        ItemsComments condition =new ItemsComments();
+        condition.setItemId(itemId);
+        if(level!=null){
+            condition.setCommentLevel(level);
+        }
+        return itemsCommentsMapper.selectCount(condition);
+    }
 }
